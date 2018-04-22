@@ -1,0 +1,94 @@
+@import "../styles/variables.styl"
+
+// Common
+*
+  margin 0
+  padding 0
+  box-sizing border-box
+
+html
+body
+  height 100%
+
+body-font-size = 14px
+
+body
+  font-family 'Roboto', 'Arial', sans-serif
+  font-size body-font-size
+  font-weight 400
+
+  letter-spacing 1px
+  line-height 1.2
+
+a
+button
+input
+textarea
+  outline none
+
+a.btn
+  display inline-flex
+  cursor pointer
+  transition all .4s
+
+button
+  cursor pointer
+  transition all .4s
+
+ol
+ul
+  list-style none
+
+.app
+  display flex
+  min-height 100vh
+
+  &__sidebar
+    flex-basis 200px
+    flex-shrink 0
+    z-index 20
+
+  &__content
+    display flex
+    flex-direction column
+    flex-grow 1
+    z-index 10
+
+.route
+  &-notfound
+    color trash-color
+
+.info-title {
+  color grey-color
+}
+
+/* Buttons */
+.btn
+  display inline-flex
+  text-decoration none
+
+.btn-search
+.btn-mic
+  color #fff
+
+.btn-search:hover
+.btn-mic:hover
+  opacity .5
+
+.btn-inbox:hover
+  color inbox-color
+
+.btn-sent:hover
+  color sent-color
+
+.btn-spam:hover
+  color spam-color
+
+.btn-trash:hover
+  color trash-color
+
+.btn-notspam:hover
+  color inbox-color
+
+.btn-restore:hover
+  color lightgrey-color

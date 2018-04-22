@@ -1,0 +1,45 @@
+btn-navigation-color = #666
+btn-navigation-hover-bg = #eee
+btn-navigation-hover-border = #666
+
+badge-color = #333
+badge-bg-color = #fefb1e
+badge-border-color = rgba(112, 112, 112, 0.25)
+
+.btn-navigation
+  width 100%
+  padding 15px 20px
+  align-items center
+
+  letter-spacing normal
+  color btn-navigation-color
+  border-left 5px solid transparent
+
+  .material-icons
+    margin-right 15px
+
+.btn-navigation.active
+.btn-navigation:hover
+  background-color btn-navigation-hover-bg
+  border-color btn-navigation-hover-border
+
+.is-unread
+  font-weight 700
+
+.badge
+  display inline-flex
+  align-items center
+  justify-content center
+
+  width 25px
+  height 25px
+  margin-left 40px
+
+  font-size 13px
+  font-weight bold
+  letter-spacing normal
+  color badge-color
+
+  background-color badge-bg-color
+  border 1px solid badge-border-color
+  border-radius 50%

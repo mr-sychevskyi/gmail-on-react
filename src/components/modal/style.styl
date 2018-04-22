@@ -1,0 +1,31 @@
+modal-bg-color = rgba(0, 0, 0, 0.5)
+btn-newmail-bg-color = #d23f31
+btn-newmail-shadow-color = rgba(0, 0, 0, 0.16)
+btn-newmail-hover-shadow = rgba(100, 100, 100, 1)
+
+.modal-overlay
+  position fixed
+  top 0
+  left 0
+
+  display block
+  width 100%
+  height 100%
+
+  background-color modal-bg-color
+  z-index 100
+
+.btn.btn-newmail
+  position fixed
+  bottom 20px
+  right 20px
+  padding 20px
+
+  color #fff
+  background-color btn-newmail-bg-color
+  border-radius 50%
+  box-shadow 0 3px 6px 0 btn-newmail-shadow-color
+  z-index 100
+
+.btn-newmail:hover
+  box-shadow 0 0 4px 4px btn-newmail-hover-shadow

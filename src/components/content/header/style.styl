@@ -1,0 +1,23 @@
+@import "../../../styles/variables.styl"
+
+header-inbox-bg-color = inbox-color
+header-sent-bg-color = sent-color
+header-spam-bg-color = spam-color
+header-trash-bg-color = trash-color
+header-shadow-color = rgba(0, 0, 0, 0.5)
+
+.header
+  display flex
+  align-items center
+  justify-content space-between
+  padding 15px 40px
+  box-shadow 0 3px 6px 0 header-shadow-color
+
+  &__inbox
+    background-color header-inbox-bg-color
+  &__sent
+    background-color header-sent-bg-color
+  &__spam
+    background-color header-spam-bg-color
+  &__trash
+    background-color header-trash-bg-color

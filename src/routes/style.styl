@@ -1,0 +1,26 @@
+message-border-color = #ccc
+message-group-title-color = #666
+message-group-body-bg-color = #fff
+message-group-body-border-color = #ccc
+
+.message-group
+  &__title
+    margin-left 22px
+    color message-group-title-color
+    font-weight 400
+    letter-spacing normal
+
+  &__list
+    max-width 1060px
+    margin 0 auto
+    margin-top 12px
+
+    box-shadow 0 3px 6px 0 rgba(0, 0, 0, .16)
+    background-color message-group-body-bg-color
+    border 1px solid message-group-body-border-color
+
+    li:not(:first-child)
+      border-top 1px solid message-border-color
+
+  &:not(:first-child)
+    margin-top: 25px

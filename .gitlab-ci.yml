@@ -1,0 +1,35 @@
+image: node:latest
+
+stages:
+  - test
+  - deploy
+  - deploy-prod
+
+check:
+  stage: test
+  script:
+    - npm install
+    - npm run check
+
+deploy_stagging:
+  stage: deploy
+  image: ruby:latest
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=spdu-simpsons-app --api-key=$HEROKU_API_KEY
+  only:
+    - deploy
+    
+deploy_prod:
+  stage: deploy-prod
+  image: ruby:latest
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=spdu-simpsons-app-prod --api-key=$HEROKU_API_KEY
+  when: manual
+  only:
+    - deploy

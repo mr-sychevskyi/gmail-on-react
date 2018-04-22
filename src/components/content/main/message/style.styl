@@ -1,0 +1,97 @@
+message-color = #333
+message-open-bg-color = #fff
+message-border-color = #ccc
+
+.message
+  position relative
+  display flex
+  align-items center
+  justify-content flex-start
+  padding 12px 24px
+  min-height 40px
+
+  font-weight normal
+  letter-spacing normal
+  color message-color
+  transition transform .4s
+
+  &__subject
+    flex-basis 240px
+    font-weight: normal
+    text-overflow ellipsis
+    overflow hidden
+    white-space nowrap
+    text-align left
+
+  &__controls
+    display none
+    align-items center
+    position absolute
+    top 8px
+    right 20px
+    color #666
+
+  &__body
+    flex-basis 740px
+    margin-left 30px
+    text-overflow ellipsis
+    overflow hidden
+    white-space nowrap
+    text-align left
+
+  &:hover
+    cursor pointer
+
+.message__controls .btn-trash
+  margin-left 10px
+
+.message-unread
+  font-weight 700
+
+.message:not(.message-open):hover
+  .message__body
+    flex-basis 660px
+  .message__controls
+    display flex
+
+.message__recipients
+  .form-group__label
+    flex-basis 5%
+  .form-group__input
+    flex-basis 95%
+
+.message-open
+  justify-content space-between
+  flex-wrap wrap
+  padding 0
+
+  background message-open-bg-color
+  border 1px solid message-border-color
+  transform scale(1.03)
+  z-index 10
+
+  .message__subject
+    order 1
+    flex-basis 80%
+    min-height 40px
+    padding 12px 20px
+    white-space normal
+    font-weight 700
+
+  .message__recipients
+    order 3
+    flex-basis 100%
+    border-top 1px solid message-border-color
+    border-bottom 1px solid message-border-color
+
+  .message__body
+    order 4
+    flex-basis 100%
+    padding 12px 20px
+    margin-left 0
+
+    line-height 1.4
+    white-space normal
+
+  .message__controls
+    display flex

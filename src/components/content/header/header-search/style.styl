@@ -1,0 +1,36 @@
+search-form-color = #fff
+search-form-bg-color = rgba(255, 255, 255, .3)
+search-form-input-bg-color = transparent
+
+.search-form
+  display flex
+  align-items center
+  flex-basis 344px
+  position relative
+  padding 11px 0
+  padding-left 65px
+  padding-right 40px
+  border-radius 2px
+  background-color search-form-bg-color
+
+  &__input
+    width 100%
+
+    font-family 'Roboto', sans-serif
+    font-size 1rem
+    color #fff
+    border none
+    background-color search-form-input-bg-color
+
+  &__button
+    position absolute
+
+  &__button.btn-search
+    left 10px
+  &__button.btn-mic
+    right 10px
+
+  &__input::placeholder
+  &__input::-webkit-input-placeholder
+    font-size 1rem
+    color search-form-color

@@ -1,0 +1,24 @@
+form-group-label-color = #666
+form-group-placeholder-color = #333
+
+.form-group
+  display flex
+  padding 12px 30px
+  text-align left
+
+  &__label
+    flex-basis 10%
+    font-size 13px
+    letter-spacing normal
+    color form-group-label-color
+
+  &__input
+    flex-basis 90%
+    border none
+
+    &::placeholder
+    &-webkit-input-placeholder
+      font-family 'Roboto', sans-serif
+      font-size 13px
+      letter-spacing normal
+      color form-group-placeholder-color

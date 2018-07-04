@@ -11,4 +11,3 @@
 
 **Technologies:**
 * ES6, React, Redux, Flow, ESlint, Jest
-

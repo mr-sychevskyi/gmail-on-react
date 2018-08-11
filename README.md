@@ -1,6 +1,6 @@
 # Gmail App
 
-**Demo:** https://spdu-simpsons-app.herokuapp.com
+**Demo:** [Heroku](https://spdu-simpsons-app.herokuapp.com)
 
 **To run this app locally:**
 * npm install

@@ -7,6 +7,7 @@ message-border-color = #ccc
   display flex
   align-items center
   justify-content flex-start
+
   padding 12px 24px
   min-height 40px
 
@@ -17,7 +18,18 @@ message-border-color = #ccc
 
   &__subject
     flex-basis 240px
-    font-weight: normal
+    flex-shrink 0
+    min-width 0
+
+    text-overflow ellipsis
+    overflow hidden
+    white-space nowrap
+    font-weight normal
+    text-align left
+
+  &__body
+    flex-grow 1
+    margin-left 30px
     text-overflow ellipsis
     overflow hidden
     white-space nowrap
@@ -31,14 +43,6 @@ message-border-color = #ccc
     right 20px
     color #666
 
-  &__body
-    flex-basis 740px
-    margin-left 30px
-    text-overflow ellipsis
-    overflow hidden
-    white-space nowrap
-    text-align left
-
   &:hover
     cursor pointer
 
@@ -49,8 +53,10 @@ message-border-color = #ccc
   font-weight 700
 
 .message:not(.message-open):hover
+  background-color rgba(144, 164, 174, 0.1)
+
   .message__body
-    flex-basis 660px
+    padding-right 75px
   .message__controls
     display flex
 

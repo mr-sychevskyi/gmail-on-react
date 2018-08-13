@@ -7,11 +7,14 @@ import Message from '../../components/content/main/message/index';
 import Loader from '../../components/common/loader/index';
 
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import {loadMessages} from './actions';
 import type {MessageObj} from '../reducers';
 
-type StateProps = { messages: MessageObj };
+type StateProps = {
+    messages: MessageObj,
+    filteredMessages: MessageObj,
+    loaded: boolean
+};
 type DispatchProps = { loadMessages: () => void };
 
 type Props = StateProps & DispatchProps;
@@ -32,31 +35,37 @@ class MessageGroup extends Component<Props, State> {
     };
 
     render() {
-        const messageList = this.props.messages.data.map(item =>
-            (<li key={item._id.$oid} onClick={this.accordionClick(item._id.$oid)}>
-                <Message message={item} isOpen={this.state.openMessageId === item._id.$oid}/>
-            </li>)
-        ).reverse();
+        const {filteredMessages, loaded} = this.props;
 
-        if (!this.props.messages.loaded) {
+        if (!loaded) {
             return <Loader/>;
         }
 
         return (
-            this.props.messages.data.length === 0
+            filteredMessages.length === 0
                 ? <h2 className="info-title">No messages!</h2>
                 :
                 <section className="message-group">
                     <h4 className="message-group__title">This month</h4>
                     <ul className="message-group__list">
-                        {messageList}
+                        {
+                            filteredMessages.map(item =>
+                                (<li key={item._id.$oid} onClick={this.accordionClick(item._id.$oid)}>
+                                    <Message message={item} isOpen={this.state.openMessageId === item._id.$oid}/>
+                                </li>)
+                            ).reverse()
+                        }
                     </ul>
                 </section>
         );
     }
 }
 
-const mapStateToProps = state => ({messages: state.messages['messages-spam']});
-const matchDispatchToProps = dispatch => (bindActionCreators({loadMessages}, dispatch));
+const mapStateToProps = state => ({
+    messages: state.messages['messages-spam'].data,
+    filteredMessages: state.messages['messages-spam'].filteredData,
+    loaded: state.messages['messages-spam'].loaded
+});
+const matchDispatchToProps = {loadMessages};
 
 export default connect(mapStateToProps, matchDispatchToProps)(MessageGroup);

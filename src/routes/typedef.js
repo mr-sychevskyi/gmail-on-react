@@ -27,6 +27,8 @@ export type Action =
     | { type: 'UPDATE_MESSAGE_SUCCESS', id: string, collection: string }
     | { type: 'UPDATE_MESSAGE_FAILURE', error: string, collection: string }
 
+    | { type: 'FILTER_MESSAGES', response: Array<MessageData> }
+
     | { type: 'DELETE_MESSAGE_REQUEST' }
     | { type: 'DELETE_MESSAGE_SUCCESS', id: string, collection: string }
     | { type: 'DELETE_MESSAGE_FAILURE', error: string, collection: string };

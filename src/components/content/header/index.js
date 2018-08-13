@@ -3,14 +3,14 @@
 import React from 'react';
 import './style.styl';
 
-import HeaderSearch from './header-search/index';
-import HeaderUser from './header-user/index';
+import GlobalSearch from './global-search';
+import HeaderUser from './header-user';
 
 const Header = () => {
     const currSection = location.pathname.slice(1);
     return (
         <header className={`header header__${currSection}`}>
-            <HeaderSearch/>
+            <GlobalSearch currSection={currSection}/>
             <HeaderUser/>
         </header>
     );

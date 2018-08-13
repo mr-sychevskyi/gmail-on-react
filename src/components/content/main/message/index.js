@@ -8,7 +8,6 @@ import ButtonIcon from '../../../common/button-icon/index';
 import InputGroup from '../../../common/input-group/index';
 import type {MessageData} from './typedef';
 
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {add, read, removeToTrash} from './actions';
 
@@ -121,11 +120,10 @@ const Message = (props: Props) => {
     );
 };
 
-const matchDispatchToProps = dispatch =>
-    bindActionCreators({
-        add,
-        read,
-        remove: removeToTrash
-    }, dispatch);
+const matchDispatchToProps = {
+    add,
+    read,
+    remove: removeToTrash
+};
 
 export default connect(null, matchDispatchToProps)(Message);

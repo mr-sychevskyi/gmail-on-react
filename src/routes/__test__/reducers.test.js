@@ -6,6 +6,7 @@ describe('Messages reducer', () => {
         ...initialState,
         'messages-inbox': {
             data: [],
+            filteredData: [],
             pending: false,
             loaded: false
         }
@@ -38,6 +39,7 @@ describe('Messages reducer', () => {
             ...initialMessagesState,
             'messages-inbox': {
                 data: action.response,
+                filteredData: action.response,
                 pending: false,
                 loaded: true
             }

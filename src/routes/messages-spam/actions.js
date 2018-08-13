@@ -10,7 +10,7 @@ import type {ApiDispatcher} from '../../store/typedef';
 
 const LIMIT = 1000;
 
-export const loadMessages = (): ApiDispatcher => (dispatch, getState) => {
+export const loadMessages = (): ApiDispatcher => dispatch => {
     return dispatch({
         CALL_API: {
             types: [

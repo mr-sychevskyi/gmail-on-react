@@ -27,13 +27,16 @@ import {
 
     DELETE_MESSAGE_REQUEST,
     DELETE_MESSAGE_SUCCESS,
-    DELETE_MESSAGE_FAILURE
+    DELETE_MESSAGE_FAILURE,
+
+    FILTER_MESSAGES
 } from '../constants';
 import type {Action} from './typedef';
 import type {MessageData} from '../components/content/main/message/typedef';
 
 export type MessageObj = {
     data: Array<MessageData>,
+    filteredData: Array<MessageData>,
     pending: boolean,
     loaded: boolean
 };
@@ -48,21 +51,25 @@ export type State = {
 export const DEFAULT_STATE = {
     'messages-inbox': {
         data: [],
+        filteredData: [],
         pending: false,
         loaded: false
     },
     'messages-sent': {
         data: [],
+        filteredData: [],
         pending: false,
         loaded: false
     },
     'messages-spam': {
         data: [],
+        filteredData: [],
         pending: false,
         loaded: false
     },
     'messages-trash': {
         data: [],
+        filteredData: [],
         pending: false,
         loaded: false
     }
@@ -83,6 +90,7 @@ export const messages = (state: State = DEFAULT_STATE, action: Action) => {
                 ...state,
                 'messages-inbox': {
                     data: action.response,
+                    filteredData: action.response,
                     pending: false,
                     loaded: true
                 }
@@ -91,9 +99,7 @@ export const messages = (state: State = DEFAULT_STATE, action: Action) => {
             return {
                 ...state,
                 'messages-inbox': {
-                    data: [],
-                    pending: false,
-                    loaded: false
+                    ...DEFAULT_STATE['messages-inbox']
                 }
             };
 
@@ -110,6 +116,7 @@ export const messages = (state: State = DEFAULT_STATE, action: Action) => {
                 ...state,
                 'messages-sent': {
                     data: action.response,
+                    filteredData: action.response,
                     pending: false,
                     loaded: true
                 }
@@ -118,9 +125,7 @@ export const messages = (state: State = DEFAULT_STATE, action: Action) => {
             return {
                 ...state,
                 'messages-sent': {
-                    data: [],
-                    pending: false,
-                    loaded: false
+                    ...DEFAULT_STATE['messages-sent']
                 }
             };
 
@@ -137,6 +142,7 @@ export const messages = (state: State = DEFAULT_STATE, action: Action) => {
                 ...state,
                 'messages-spam': {
                     data: action.response,
+                    filteredData: action.response,
                     pending: false,
                     loaded: true
                 }
@@ -145,9 +151,7 @@ export const messages = (state: State = DEFAULT_STATE, action: Action) => {
             return {
                 ...state,
                 'messages-spam': {
-                    data: [],
-                    pending: false,
-                    loaded: false
+                    ...DEFAULT_STATE['messages-spam']
                 }
             };
 
@@ -164,6 +168,7 @@ export const messages = (state: State = DEFAULT_STATE, action: Action) => {
                 ...state,
                 'messages-trash': {
                     data: action.response,
+                    filteredData: action.response,
                     pending: false,
                     loaded: true
                 }
@@ -172,9 +177,7 @@ export const messages = (state: State = DEFAULT_STATE, action: Action) => {
             return {
                 ...state,
                 'messages-trash': {
-                    data: [],
-                    pending: false,
-                    loaded: false
+                    ...DEFAULT_STATE['messages-trash']
                 }
             };
 
@@ -185,6 +188,7 @@ export const messages = (state: State = DEFAULT_STATE, action: Action) => {
                 ...state,
                 [action.collection]: {
                     data: [...state[action.collection].data, action.response],
+                    filteredData: [...state[action.collection].data, action.response],
                     pending: false,
                     loaded: true
                 }
@@ -193,9 +197,7 @@ export const messages = (state: State = DEFAULT_STATE, action: Action) => {
             return {
                 ...state,
                 [action.collection]: {
-                    data: [],
-                    pending: false,
-                    loaded: false
+                    ...DEFAULT_STATE[action.collection]
                 }
             };
 
@@ -209,6 +211,9 @@ export const messages = (state: State = DEFAULT_STATE, action: Action) => {
                     data: state[action.collection].data.map(item => (item._id.$oid === mssgUpdateId
                         ? {...item, isRead: 'true'}
                         : item)),
+                    filteredData: state[action.collection].data.map(item => (item._id.$oid === mssgUpdateId
+                        ? {...item, isRead: 'true'}
+                        : item)),
                     pending: false,
                     loaded: true
                 }
@@ -218,9 +223,7 @@ export const messages = (state: State = DEFAULT_STATE, action: Action) => {
             return {
                 ...state,
                 [action.collection]: {
-                    data: [],
-                    pending: false,
-                    loaded: false
+                    ...DEFAULT_STATE[action.collection]
                 }
             };
 
@@ -232,6 +235,7 @@ export const messages = (state: State = DEFAULT_STATE, action: Action) => {
                 ...state,
                 [action.collection]: {
                     data: state[action.collection].data.filter(item => item._id.$oid !== mssgDeleteId),
+                    filteredData: state[action.collection].data.filter(item => item._id.$oid !== mssgDeleteId),
                     pending: false,
                     loaded: true
                 }
@@ -241,9 +245,18 @@ export const messages = (state: State = DEFAULT_STATE, action: Action) => {
             return {
                 ...state,
                 [action.collection]: {
-                    data: [],
+                    ...DEFAULT_STATE[action.collection]
+                }
+            };
+
+        case FILTER_MESSAGES:
+            return {
+                ...state,
+                [action.collection]: {
+                    ...state[action.collection],
+                    filteredData: action.currentMessages,
                     pending: false,
-                    loaded: false
+                    loaded: true
                 }
             };
 

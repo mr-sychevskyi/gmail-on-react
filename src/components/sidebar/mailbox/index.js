@@ -3,7 +3,6 @@
 import React, {Component} from 'react';
 
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
 import './style.styl';
 import MailBoxLink from './mailbox-item/index';
@@ -61,10 +60,9 @@ const mapStateToProps = state => ({
     unreadMessagesSpam: state.messages['messages-spam'].data.filter(item => !item.isRead).length
 });
 
-const matchDispatchToProps = dispatch =>
-    bindActionCreators({
-        loadMessagesInbox,
-        loadMessagesSpam
-    }, dispatch);
+const matchDispatchToProps = {
+    loadMessagesInbox,
+    loadMessagesSpam
+};
 
 export default connect(mapStateToProps, matchDispatchToProps, null, {pure: false})(MainNavigation);

@@ -5,8 +5,8 @@
         "check:flow": "flow check",
         "check:lint": "eslint .",
         "check:test": "jest",
-        "build": "rimraf dist && cross-env NODE_ENV=production API_KEY=3W6HwsPsBuULjX6cc9ZUcdJvdp-r_ziv webpack --config config/webpack.config.js",
-        "start:dev": "cross-env NODE_ENV=development API_KEY=3W6HwsPsBuULjX6cc9ZUcdJvdp-r_ziv webpack-dev-server --config config/webpack.config.dev.js",
+        "build": "rimraf dist && cross-env NODE_ENV=production API_KEY=OC9zdRla3z_mJLnJolHefCGgrKx7MOlH webpack --config config/webpack.config.js",
+        "start:dev": "cross-env NODE_ENV=development API_KEY=OC9zdRla3z_mJLnJolHefCGgrKx7MOlH webpack-dev-server --config config/webpack.config.dev.js",
         "start": "npm run build && node ./app.js"
     },
     "dependencies": {
